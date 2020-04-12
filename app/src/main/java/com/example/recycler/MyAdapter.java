@@ -5,6 +5,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.example.recycler.pinned.IPinnedHolder;
+
 /**
  * Created by Rex.Wei on 2020-04-10
  *
@@ -12,15 +14,13 @@ import androidx.annotation.NonNull;
  */
 public class MyAdapter extends AbsRecyclerAdapter {
 
-    public static final int TYPE_PARENT = 1;
-    public static final int TYPE_CHILD = 2;
 
     @NonNull
     @Override
     public AbsRecyclerViewHolder<?> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == TYPE_PARENT) {
+        if (viewType == IPinnedHolder.TYPE_PARENT) {
             return new ParentViewHolder(parent, this);
-        } else if (viewType == TYPE_CHILD) {
+        } else if (viewType == IPinnedHolder.TYPE_CHILD) {
             return new ChildViewHolder(parent);
         }
         return new AbsRecyclerViewHolder<Object>(new View(parent.getContext())) {
@@ -36,9 +36,9 @@ public class MyAdapter extends AbsRecyclerAdapter {
     public int getItemType(int position) {
         final Object data = getItemData(position);
         if (data instanceof ParentModel) {
-            return TYPE_PARENT;
+            return IPinnedHolder.TYPE_PARENT;
         } else if (data instanceof ChildModel) {
-            return TYPE_CHILD;
+            return IPinnedHolder.TYPE_CHILD;
         }
         return super.getItemType(position);
     }

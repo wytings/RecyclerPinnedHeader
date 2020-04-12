@@ -6,14 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
+import com.example.recycler.pinned.IPinnedHolder;
 
 /**
  * Created by Rex.Wei on 2020-04-10
  *
  * @author 韦玉庭
  */
-public class ParentViewHolder extends AbsRecyclerViewHolder<ParentModel> {
+public class ParentViewHolder extends AbsRecyclerViewHolder<ParentModel> implements IPinnedHolder {
 
     private final TextView button, text;
 
@@ -42,5 +42,11 @@ public class ParentViewHolder extends AbsRecyclerViewHolder<ParentModel> {
         super.onBind(data, dataIndex);
         text.setText(data.title);
         Log.i("ParentViewHolder", "onBind,title = " + data.title);
+    }
+
+    @Override
+    public boolean isPinned() {
+        final ParentModel data = getBoundData();
+        return data != null && data.expanded;
     }
 }

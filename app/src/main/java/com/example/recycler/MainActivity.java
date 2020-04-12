@@ -1,15 +1,12 @@
 package com.example.recycler;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recycler.databinding.ActivityMainBinding;
+import com.example.recycler.pinned.PinnedLinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.recyclerView.setLayoutManager(new StickyLinearLayoutManager(this));
+        binding.recyclerView.setLayoutManager(new PinnedLinearLayoutManager(this));
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setItemAnimator(new DefaultItemAnimator());
         binding.recyclerView.setAdapter(myAdapter);
